@@ -1,0 +1,194 @@
+/* General Mixins */
+
+// ========== Media Queries =======
+
+// Extra small size devices
+@mixin xs {
+  @media (min-width: #{$n_xs}) {
+    @content;
+  }
+}
+
+// Small size devices fromn 480px+
+
+@mixin x-sm {
+  @media (min-width: #{$x-sm}) {
+    @content;
+  }
+}
+
+// Small size devices fromn 560px+
+
+@mixin sm {
+  @media (min-width: #{$n_sm}) {
+    @content;
+  }
+}
+
+// Medium size devices
+
+@mixin md {
+  @media (min-width: #{$n_md}) {
+    @content;
+  }
+}
+
+// Medium size down properties
+@mixin lg-down {
+  @media (max-width: #{$n_lg}) {
+    @content;
+  }
+}
+
+// Large size devices
+
+@mixin lg {
+  @media (min-width: #{$n_lg}) {
+    @content;
+  }
+}
+
+// Extra Large size devices
+
+@mixin xl {
+  @media (min-width: #{$n_xl}) {
+    @content;
+  }
+}
+
+// ======= Container Mixins ========
+
+// Default Flexbox
+@mixin flex_box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+// column flexbox
+@mixin column_flex {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+// centered flexbox
+
+@mixin centered_flex {
+  @include flex_box();
+  align-items: center;
+  justify-content: center;
+}
+
+//around flexbox
+
+@mixin around_flex {
+  @include flex_box();
+  justify-content: space-around;
+}
+
+// between flexbox
+
+@mixin between_flex {
+  @include flex_box();
+  justify-content: space-between;
+}
+
+// Searcher container
+
+@mixin searcher-container {
+  @include centered_flex();
+  height: 5rem;
+  margin-top: 2rem;
+  @include md {
+    margin-top: 0;
+  }
+  .searcher-wrapper {
+    border: none;
+    padding: 0;
+    position: relative;
+    text-align: center;
+  }
+}
+
+// ======= Simple Drid System ========
+
+.visiond{
+  @include flex_box();
+}
+
+//default
+@for $i from 1 through $gridsize {
+  .visiond-#{$i}{
+    width:  $i * 5%;
+  }
+}
+
+//asign middle identifier
+@each $breakpoint, $size in $gridBreakpoints {
+  @media (min-width: #{$size}) {
+    @for $i from 1 through $gridsize {
+      .visiond-#{$breakpoint}-#{$i} {
+        width:  $i * 5%;
+      }
+    }
+  }
+}
+
+// ========= Buttons =========
+
+@mixin mulberry-button {
+  background-color: rgba($mulberry, .7);
+  border-radius: 1rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: $medium-font-size;
+  font-weight: bold;
+  padding: .4rem;
+  text-transform: uppercase;
+  transition: all 1s;
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: $mulberry;
+    outline: none;
+  }
+}
+
+// =============== Form ============
+
+//Searcher Input
+
+@mixin search-input {
+  border-radius: 1rem;
+  border: .1rem solid transparent;
+  font-size: $medium-font-size;
+  font-weight: bold;
+  padding: .7rem;
+  transition: all 1s;
+  &:active,
+  &:focus,
+  &:hover {
+    border: .1rem solid $mulberry;
+    outline: none;
+  }
+}
+
+// ========== Text ==========
+
+//headline for artist and modal
+
+@mixin head_text {
+  @include centered_flex();
+  background: white;
+  border-radius: 0 0 .25rem .25rem;
+  color: $tuna;
+  font-size: .6rem;
+  justify-content: flex-start;
+  padding: 0 .5rem;
+  @include lg {
+    padding: 0 1rem;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "project_path": "c:/xampp/htdocs/compucorp/assets/stylesheets/application.scss",
+	"output_path": "css",
+	"options": {
+		"cache":         false,
+		"debug":         true,
+		"line-comments": true,
+		"line-numbers":  true,
+		"style":         "nested"
+	}
+}

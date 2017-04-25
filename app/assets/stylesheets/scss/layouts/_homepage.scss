@@ -1,0 +1,227 @@
+@keyframes up_down {
+  0% {top: 0;}
+  100%{top: -1rem;}
+}
+
+.banner-container {
+	background: $mulberry;
+	height: 70vh;
+	@include x-sm {
+		height: 100vh;
+	}
+	@include lg {
+		height: 85vh;
+	}
+}
+
+.banner-header {
+	@include between_flex();
+	padding: 2.5% 3.5%;
+	position: absolute;
+	.logo {
+	  width: 5rem;	
+	}
+}
+
+.banner-content {
+	@include column_flex();
+	height: 100%;
+	.arrow-down-container {
+		position: relative;
+		width: 100%;
+		height: 5rem;
+		.arrow-down {
+			left: 50%;
+			position: absolute;
+			top: 0;
+			transform: translateX(-50%);
+			width: 2rem;
+			&:hover {
+				animation: up_down .5s infinite alternate;
+			}
+		}
+	}
+}
+
+.searcher-container {
+	@include searcher-container();
+	.searcher-text {
+    @include search-input();
+	}
+	.searcher-button {
+		@include mulberry-button();
+	  margin: 1rem auto;
+	  padding: .7rem;
+	  @include md {
+	  	margin: auto;
+	    padding: .4rem;
+	    position: absolute;
+	    right: .3rem;
+	    top: .3rem;
+	  }
+	}
+}
+
+.result-container {
+	@include column_flex();
+	background-color: $martinique;
+	height: 0;
+	@include lg {
+		height: 60vh;
+	}
+	&#backgroundContainer {
+		display: none;
+		@include lg {
+			display: flex;
+		}
+	}
+	.message {
+		color: rgba(white, .05);
+		font-size: 1.25rem;
+		margin-top: 1rem;
+	}
+	.artist .artist-icon {
+		background-image: url("/assets/images/artist-icon.png");
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+	.album .artist-icon {
+		background-image: url("/assets/images/album-icon.png");
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+}
+
+.results {
+	@include around_flex();
+	align-items: flex-start;
+	margin-top: 2rem;
+	@include lg {
+		padding: 0 7.5%;
+	}
+	.headline {
+    border-top: .15rem solid rgba($tuna, .2);
+		height: 4rem;
+		@include sm {
+		  height: 6rem;
+		}
+		@include lg {
+		  height: 4rem;
+		}
+	}
+}
+
+.photo {
+	border-radius: .25rem .25rem 0 0;
+	height: 4rem;
+	position: relative;
+	@include sm {
+		height: 6rem;
+	}
+	@include lg {
+		height: 15rem;
+	}
+  .background {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 100%;
+  	position: absolute;
+  	transition: all 1s;
+  	width: 100%;
+  }
+	.message {
+		bottom: 50%;
+		color: white;
+		display: none;
+		font-size: $medium-font-size;
+		font-weight: 500;
+		opacity: 0;
+		position: relative;
+		text-align: center;
+		top: 50%;
+		transition: all 5s;
+		z-index: 1;
+		@include sm {
+			bottom: 40%;
+			top: 60%;
+		}
+		@include md {
+			bottom: 35%;
+			font-size: .85rem;
+			top: 65%;
+		}
+	}
+	.artist-icon {
+    bottom: .5rem;
+    height: 1rem;
+    left: .5rem;
+    position: absolute;
+    width: 1rem;
+    @include sm {
+	    height: 1.5rem;
+	    width: 1.5rem;
+    }
+    @include lg {
+	    bottom: 1rem;
+	    left: 1rem;
+    }
+	}
+}
+
+.gal-item {
+	@include flex_box();		
+	align-items: flex-start;
+	border-radius: .15rem;
+	box-shadow: 0 0 1rem rgba(black, .55);
+	justify-content: space-between;
+  margin: 0 .5rem 1rem;
+  @include lg {
+  	@include column_flex();
+  	margin: 0 .5rem 3rem;
+  }
+  &:hover {
+	  .photo:before {
+	  	background-color: rgba($tuna, .3);
+	  	background-image: url("../images/play.png");
+	  	background-position: center center;
+	  	background-repeat: no-repeat;
+	  	background-size: 40%;
+	  	content: '';
+	  	height: 100%;
+	  	position: absolute;
+	  	width: 100%;
+	  	z-index: 1;
+	  	@include md {
+	  		background-size: 35%;
+	  	}
+	  	@include lg {
+	  		background-size: 50%;
+	  	}
+	  }
+	  .background {
+	  	filter: blur(.2rem);
+	  }
+		.message {
+			display: block;
+			opacity: 1;
+		}
+		.artist-icon {
+			display: none;
+		}
+  }
+}
+
+.footer-powered {
+	@include centered_flex();
+	height: 5rem;
+	.text {
+		font-size: $medium-font-size;
+		font-weight: 500;
+		@include lg {
+			font-size: .9rem;
+		}
+	}
+}

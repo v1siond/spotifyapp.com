@@ -1,0 +1,14 @@
+// Project requirements
+@import "scss/variables.scss";
+@import "scss/helpers.scss";
+@import "scss/tools.scss";
+@import "scss/fontAwesome/font-awesome.scss";
+@import "scss/base.scss";
+
+// Globals
+@import "scss/components/footer.scss";
+@import 'scss/components/header.scss';
+@import 'scss/components/modal.scss';
+
+// Layouts
+@import 'scss/layouts/homepage.scss';

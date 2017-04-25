@@ -1,0 +1,41 @@
+<div class="fade-screen fade-albums visiond-20">
+	<div class="visiond-18 visiond-lg-8 modal-window">
+		<header class="modal-header artist-albums visiond-20">
+			<section class="photo visiond-20">
+				<div class="artist-details mobile visiond-20" ng-repeat="background in artistBackground | limitTo:quantity">
+					<figure class="modal-art visiond-4">
+						<img src="{{background.url}}" alt="Artist Photo">
+					</figure>
+					<div class="modal-deatils visiond-15">
+						<fieldset class="visiond-20">
+							<span>Albums by</span>
+							<a class="close-modal" ng-click="closeModal()""><img src="./assets/images/close.png" alt="Geek label"></a>			
+						</fieldset>
+						<h2 class="name">{{artistName}}</h2>
+					</div>					
+				</div>
+				<div class="artist-details desktop visiond-20" style='background-image: url("{{background.url}}");' ng-repeat="background in artistBackground | limitTo:quantity">
+					<h2 class="name">{{artistName}}</h2>
+					<a class="close-modal" ng-click="closeModal()""><img src="./assets/images/close.png" alt="Geek label"></a>
+				</div>
+			</section>
+		</header>
+		<div class="headline">
+			<h4 class="head-text">Albums</h4>
+		</div>
+		<section class="modal-list artist-albums visiond-20">
+			<div class="modal-items" ng-repeat="album in artistAlbums">
+				<figure class="moda-art album-art" ng-if="album.images.length === 0">
+					<img ng-src="{{defaultImage}}" alt="Artist Photo">
+				</figure>
+				<figure class="moda-art album-art" ng-repeat="image in album.images | limitTo:quantity" >
+					<img ng-src="{{image.url}}" alt="Artist Photo">
+				</figure>
+				<article class="modal-deatils album-details">
+					<h3 class="album-name">{{album.name}}</h3>
+					<p class="album-year">2017</p>
+				</article>
+			</div>	
+		</section>
+	</div>	
+</div>

@@ -1,0 +1,146 @@
+.fade-screen {
+  @include centered_flex();
+  background-color: rgba($tuna, .7);
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  .modal-window {
+    animation: fadein 1s alternate;
+    height: 60vh;
+    overflow: hidden;
+    @include x-sm {
+    	height: 90vh;
+    }
+    @include md {
+    	height: 50vh;
+    }
+ 		@include lg {
+      height: 90vh;
+    }
+  }
+  .modal-header {
+    @include lg {
+      height: 45%;
+    }
+  }
+  .photo {
+    height: 100%;
+  }
+  .artist-details {
+    @include between_flex();
+    background-position: center center;
+    background-repeat:  no-repeat;
+    background-size: cover;
+    height: 100%;
+    padding: 1rem; 
+    &.desktop {
+    	display: none;
+    	@include lg {
+    		display: flex;
+    	}
+    }
+    &.mobile {
+    	background-color: white;
+    	@include lg {
+    		display: none;
+    	}
+    	.modal-deatils {
+    		fieldset {
+    			@include between_flex();
+					align-items: flex-start;
+					border: none;
+					margin: 0;
+					padding: 0;
+    		}
+    		span {
+    			color: rgba($tuna, .7);
+    			font-weight: 500;
+    		}
+    		.name {
+					color: $tuna;
+					font-size: 1rem;
+    		}
+    	}
+    }
+    .close-modal {
+      align-self: flex-start;
+      cursor: pointer;
+      &:active img,
+      &:focus img,
+      &:hover img {
+		    animation: grow 1s infinite alternate;
+      }
+      img {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+    }
+    .name {
+      color: white;
+      align-self: flex-end;
+    }
+  }
+  .headline {
+    border-bottom: .15rem solid rgba($tuna, .2);
+    border-radius: 0;
+  	border-top: none;
+  	display: none;
+    font-size: 1.5rem;
+    height: 5%;
+    @include lg {
+    	display: flex;
+    }
+  }
+  .modal-list {
+  	background: white;
+  	max-height: 100%;
+    overflow: scroll;
+  	padding: 1rem;
+  	@include lg {
+  		max-height: 45%;
+  	}
+		.modal-items {
+			@include between_flex();
+			margin-bottom: 1.5rem;
+			@include lg {
+				margin-bottom: 0;
+				margin-top: 1.5rem;
+			}
+			.moda-art {
+				display: none;
+				@include lg {
+					width: 15%;
+				}
+			}
+			.modal-deatils {
+				@include column_flex();
+				color: $tuna;
+				height: 10%;
+				align-items: flex-start;
+				width: 100%;
+				@include lg {
+					width: 80%;
+				}
+				p {
+					color: rgba($tuna, .7);
+					font-weight: 500;
+				}
+			}
+		}
+		&.album-tracks .modal-deatils {
+			width: 100%;
+		}
+  }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes grow {
+  from { transform: scale(1) }
+  to   { transform: scale(1.2) }
+}

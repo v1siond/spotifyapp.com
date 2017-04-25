@@ -1,0 +1,42 @@
+html,
+body {
+	background: $tuna;
+	color: white;
+  font-family: $primary-font-family;
+}
+
+html{
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit; 
+	margin: 0;
+	padding: 0;	
+}
+
+body,
+ul,
+ol,
+li,
+div,
+figure,
+section,
+article {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	max-width: 100%;
+}
+
+a {
+	text-decoration:none;
+	transition: all 1s;
+}
+
+.headline {
+	@include head_text();
+}

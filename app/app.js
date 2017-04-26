@@ -1,6 +1,7 @@
 angular.module('spotify', [])
     .controller('ctrlSearch', function($scope, $http) {
       $scope.quantity = 1; //limit images and others array results
+      $scope.limitString = 55;
       $scope.defaultImage = 'assets/images/deafult-image.jpg'; //default image
       $scope.artistImage = 'assets/images/artist-icon.png'; //artist icon
       var audioObject = null;
@@ -116,6 +117,7 @@ angular.module('spotify', [])
             $http.get(url)
               .then(function(res) {
                 $scope.albumTracks = res.data.items; //get tracks if found
+                console.log($scope.albumTracks);
             }, function(error) {
             });
             $http.get(urlt)

@@ -15,7 +15,7 @@
 					</div>
 				</div>
 				<div class="artist-details desktop visiond-20" style='background-image: url("{{background.url}}");' ng-repeat="background in albumBackground | limitTo:quantity">
-					<h2 class="name">{{item.name}}</h2>
+					<h2 class="name" ng-repeat="artist in item.artists | limitTo:quantity">{{artist.name}}</h2>
 					<a class="close-modal" ng-click="closeModal()"></a>
 				</div>
 			</section>

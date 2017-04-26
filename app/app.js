@@ -117,7 +117,6 @@ angular.module('spotify', [])
             $http.get(url)
               .then(function(res) {
                 $scope.albumTracks = res.data.items; //get tracks if found
-                console.log($scope.albumTracks);
             }, function(error) {
             });
             $http.get(urlt)

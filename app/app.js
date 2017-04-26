@@ -10,16 +10,19 @@ angular.module('spotify', [])
         var query = $('#artist').val();
         var getArtist = function (query, type=['album', 'artist']) {
           var url = "https://api.spotify.com/v1/search?query=" + query + '&offset=0&limit=20&type='+ type;
-          $http.get(url)
+          $http.get(url, {cache:true})
             .then(function(res) {
-              $('#backgroundContainer').hide(); //hide the magnify icon
               $('.result-container').css('height', 'auto'); //adapts container height to match results
               $scope.artists = res.data.artists.items; //get artist if found
               $scope.albums = res.data.albums.items; //get album if found
               $scope.result = $scope.artists.concat($scope.albums); //concat artist and albums into one array
+              if ($scope.result.length > 0) {
+                $('#backgroundContainer').hide(); //hide the magnify icon
+              }else {
+                $('#backgroundContainer').show();
+              }
           }, function(error) {
             $('#backgroundContainer').show();
-            alert('error');
           });
         }
         getArtist(query);
@@ -39,14 +42,12 @@ angular.module('spotify', [])
               .then(function(res) {
                 $scope.artistAlbums = res.data.items; //get album if found
             }, function(error) {
-              alert('error');
             });
             $http.get(urlt)
               .then(function(res) {
                 $scope.artistName = res.data.name; //get artist name
                 $scope.artistBackground = res.data.images; //get tracks if found
             }, function(error) {
-              alert('error');
             });
           }
           getAlbum(artistId);
@@ -62,13 +63,11 @@ angular.module('spotify', [])
               .then(function(res) {
                 $scope.albumTracks = res.data.items; //get tracks if found
             }, function(error) {
-              alert('error');
             });
             $http.get(urlt)
               .then(function(res) {
                 $scope.albumBackground = res.data.images; //get album art if found
             }, function(error) {
-              alert('error');
             });
 
           }

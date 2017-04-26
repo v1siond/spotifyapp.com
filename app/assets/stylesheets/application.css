@@ -2845,7 +2845,7 @@ a {
       @media (min-width: 64em) {
         .fade-screen .artist-details.mobile {
           display: none; } }
-      .fade-screen .artist-details.mobile .modal-details fieldset {
+      .fade-screen .artist-details.mobile .modal-details .headline-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -2861,12 +2861,19 @@ a {
         font-size: 1rem; }
     .fade-screen .artist-details .close-modal {
       align-self: flex-start;
-      cursor: pointer; }
-      .fade-screen .artist-details .close-modal:active img, .fade-screen .artist-details .close-modal:focus img, .fade-screen .artist-details .close-modal:hover img {
+      background: url("/assets/images/close-black.png") no-repeat center center;
+      background-size: cover;
+      cursor: pointer;
+      height: 1rem;
+      width: 1rem; }
+      @media (min-width: 64em) {
+        .fade-screen .artist-details .close-modal {
+          background: url("/assets/images/close.png") no-repeat center center;
+          background-size: 100% 100%;
+          height: 1.5rem;
+          width: 1.5rem; } }
+      .fade-screen .artist-details .close-modal:active, .fade-screen .artist-details .close-modal:focus, .fade-screen .artist-details .close-modal:hover {
         animation: grow 1s infinite alternate; }
-      .fade-screen .artist-details .close-modal img {
-        height: 1.5rem;
-        width: 1.5rem; }
     .fade-screen .artist-details .name {
       color: white;
       align-self: flex-end; }
@@ -2886,20 +2893,13 @@ a {
     overflow: scroll; }
     @media (min-width: 64em) {
       .fade-screen .modal-list {
-        padding: 1rem;
         max-height: 45%; } }
     .fade-screen .modal-list .modal-items {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       cursor: pointer;
-      margin-bottom: 1.5rem;
       padding: 1rem; }
-      @media (min-width: 64em) {
-        .fade-screen .modal-list .modal-items {
-          margin-bottom: 0;
-          margin-top: 1.5rem;
-          padding: 0; } }
       .fade-screen .modal-list .modal-items:hover {
         background-color: rgba(51, 52, 65, 0.15);
         transition: all .5s; }
@@ -2941,12 +2941,14 @@ a {
     top: 0; }
   100% {
     top: -1rem; } }
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 .banner-container {
   background: #C8437A;
-  height: 70vh; }
-  @media (min-width: 30em) {
-    .banner-container {
-      height: 100vh; } }
+  height: 100vh; }
   @media (min-width: 64em) {
     .banner-container {
       height: 85vh; } }
@@ -2987,16 +2989,39 @@ a {
       .banner-content .arrow-down-container .arrow-down:hover {
         animation: up_down .5s infinite alternate; }
 
+.searcher-button {
+  background-color: rgba(200, 67, 122, 0.7);
+  border-radius: 1rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: .7rem;
+  text-transform: uppercase;
+  transition: all 1s;
+  margin-bottom: 1rem; }
+  @media (min-width: 64em) {
+    .searcher-button {
+      padding: .4rem; } }
+  .searcher-button:active, .searcher-button:focus, .searcher-button:hover {
+    background-color: #C8437A;
+    outline: none; }
+
 .searcher-container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  height: 5rem;
-  margin-top: 2rem; }
+  height: auto;
+  margin-top: 1rem; }
   @media (min-width: 48em) {
     .searcher-container {
       margin-top: 0; } }
+  @media (min-width: 64em) {
+    .searcher-container {
+      margin-top: 1rem;
+      height: 5rem; } }
   .searcher-container .searcher-wrapper {
     border: none;
     padding: 0;
@@ -3008,33 +3033,30 @@ a {
     font-size: 0.75rem;
     font-weight: bold;
     padding: .7rem;
-    transition: all 1s; }
+    transition: all 1s;
+    padding: .7rem; }
     .searcher-container .searcher-text:active, .searcher-container .searcher-text:focus, .searcher-container .searcher-text:hover {
       border: 0.1rem solid #C8437A;
       outline: none; }
   .searcher-container .searcher-button {
-    background-color: rgba(200, 67, 122, 0.7);
-    border-radius: 1rem;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 0.75rem;
-    font-weight: bold;
-    padding: .4rem;
-    text-transform: uppercase;
-    transition: all 1s;
-    margin: 1rem auto;
-    padding: .7rem; }
-    .searcher-container .searcher-button:active, .searcher-container .searcher-button:focus, .searcher-container .searcher-button:hover {
-      background-color: #C8437A;
-      outline: none; }
+    margin: 1rem auto; }
     @media (min-width: 48em) {
       .searcher-container .searcher-button {
         margin: auto;
-        padding: .4rem;
         position: absolute;
         right: .3rem;
-        top: .3rem; } }
+        top: .35rem; } }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center; }
+  .actions .searcher-button {
+    margin: 0 1rem 1rem; }
+    @media (min-width: 64em) {
+      .actions .searcher-button {
+        padding: .7rem; } }
 
 .result-container {
   align-items: center;
@@ -3042,7 +3064,7 @@ a {
   flex-direction: column;
   justify-content: center;
   background-color: #383A49;
-  height: 0; }
+  min-height: 0; }
   @media (min-width: 64em) {
     .result-container {
       min-height: 60vh; } }
@@ -3104,7 +3126,7 @@ a {
     height: 4rem; }
     @media (min-width: 35.5em) {
       .results .headline {
-        height: 6rem; } }
+        height: 7rem; } }
     @media (min-width: 64em) {
       .results .headline {
         height: 4rem; } }
@@ -3115,7 +3137,7 @@ a {
   position: relative; }
   @media (min-width: 35.5em) {
     .photo {
-      height: 6rem; } }
+      height: 7rem; } }
   @media (min-width: 64em) {
     .photo {
       height: 15rem; } }
@@ -3137,7 +3159,7 @@ a {
     opacity: 0;
     position: relative;
     text-align: center;
-    top: 90%;
+    top: 80%;
     transition: all 5s;
     z-index: 1; }
     @media (min-width: 64em) {
@@ -3164,6 +3186,7 @@ a {
       justify-content: center;
       margin: 0 1rem 3rem; } }
   .gal-item:hover .photo:before {
+    animation: fadein .5s;
     background-color: rgba(51, 52, 65, 0.3);
     background-image: url("../images/play.png");
     background-position: center center;
@@ -3184,8 +3207,8 @@ a {
     display: block;
     opacity: 1; }
   .gal-item:hover .photo:after {
-    display: block;
-    opacity: 1; }
+    animation: fadein .5s;
+    display: block; }
   .gal-item:hover .background {
     filter: blur(0.2rem); }
   .gal-item:hover .artist-icon {

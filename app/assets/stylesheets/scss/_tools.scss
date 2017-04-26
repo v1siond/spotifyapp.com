@@ -99,10 +99,14 @@
 
 @mixin searcher-container {
   @include centered_flex();
-  height: 5rem;
-  margin-top: 2rem;
+  height: auto;
+  margin-top: 1rem;
   @include md {
     margin-top: 0;
+  }
+  @include lg {
+    margin-top: 1rem;
+    height: 5rem;
   }
   .searcher-wrapper {
     border: none;
@@ -146,9 +150,12 @@
   cursor: pointer;
   font-size: $medium-font-size;
   font-weight: bold;
-  padding: .4rem;
+  padding: .7rem;
   text-transform: uppercase;
   transition: all 1s;
+  @include lg {
+    padding: .4rem;
+  }
   &:active,
   &:focus,
   &:hover {

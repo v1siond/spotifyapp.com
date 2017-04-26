@@ -7,16 +7,16 @@
 						<img src="{{background.url}}" alt="Album Art">						
 					</figure>
 					<div class="modal-details visiond-15">
-						<fieldset class="visiond-20">
+						<div class=" headline-container visiond-20">
 							<span>Tracks on</span>
-							<a class="close-modal" ng-click="closeModal()"><img src="./assets/images/close.png" alt="Geek label"></a>		
-						</fieldset>
+							<a class="close-modal" ng-click="closeModal()"></a>		
+						</div>
 						<h2 class="name">{{item.name}}</h2>
 					</div>
 				</div>
 				<div class="artist-details desktop visiond-20" style='background-image: url("{{background.url}}");' ng-repeat="background in albumBackground | limitTo:quantity">
 					<h2 class="name">{{item.name}}</h2>
-					<a class="close-modal" ng-click="closeModal()"><img src="./assets/images/close.png" alt="Geek label"></a>
+					<a class="close-modal" ng-click="closeModal()"></a>
 				</div>
 			</section>
 		</header>

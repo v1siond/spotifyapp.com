@@ -4,13 +4,21 @@ angular.module('spotify', [])
       $scope.defaultImage = 'assets/images/deafult-image.jpg'; //default image
       $scope.artistImage = 'assets/images/artist-icon.png'; //artist icon
       var audioObject = null;
+      var offset = 0;
       //search function
-      $scope.startSearch = function() {    
+      $scope.startSearch = function(e) {    
         $('.results').hide();//hide previous searchs
+        var target = $(e.currentTarget);
         var query = $('#artist').val();//asign input value
+        if (target.hasClass('next') && $scope.paginationNext == true) {
+          offset = offset + 20;
+        }
+        if (target.hasClass('prev') && $scope.paginationPrev == true) {
+          offset = offset - 20;
+        }
         if (query !== '' && query !== null) {
           var getArtist = function (query, type=['album', 'artist']) {
-            var url = "https://api.spotify.com/v1/search?query=" + query + '&offset=0&limit=20&type='+ type;
+            var url = "https://api.spotify.com/v1/search?query=" + query + '&offset='+ offset +'&limit=20&type='+ type;
             $http.get(url, {cache:true})
               .then(function(res) {
                 $scope.artists = res.data.artists.items; //get artist if found
@@ -26,6 +34,16 @@ angular.module('spotify', [])
                     function() {
                       $('.message').text('Your result will appear here');
                     }, 5000);
+                }
+                if (res.data.artists.next !== null || res.data.albums.next !== null) {
+                  $scope.paginationNext = true;
+                }else {
+                  $scope.paginationNext = false;
+                }
+                if (res.data.artists.previous !== null || res.data.albums.previous !== null) {
+                  $scope.paginationPrev = true;
+                }else {
+                  $scope.paginationPrev = false;
                 }
             }, function(error) {
               $('#backgroundContainer').show();
@@ -43,30 +61,53 @@ angular.module('spotify', [])
 
       //Search artist albums
       $scope.artistAlbum = function(e) {
+        var target = $(e.currentTarget);
         //check the container class
-        if ($(e.currentTarget).hasClass('artist')) {
+        if (target.hasClass('artist')) {
           //if artist, then looks for albums
           var artistId = $(e.currentTarget).attr("data-id");
+          
+          var getAlbumYear = function(id, index, array) {
+            var urla = "https://api.spotify.com/v1/albums/" + id;
+            $http.get(urla)
+              .then(function(res) {
+                array[index] = res.data;
+            }, function(error) {
+            });    
+          }
 
           var getAlbum = function (artist) {
             var urlt = "https://api.spotify.com/v1/artists/" + artistId;
             var url = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
+            var albums = [];
+            $scope.albumYear = [{}];
+            var c = 0;
+
             $http.get(url)
               .then(function(res) {
                 $scope.artistAlbums = res.data.items; //get album if found
+                angular.forEach($scope.artistAlbums, function(value, key) {
+                  this.push(value.id);
+                }, albums);
+                angular.forEach(albums, function() {
+                  albumId = albums[c];
+                  getAlbumYear(albumId, c, $scope.albumYear);
+                  c++; 
+                });  
             }, function(error) {
             });
+
             $http.get(urlt)
               .then(function(res) {
                 $scope.artistName = res.data.name; //get artist name
-                $scope.artistBackground = res.data.images; //get tracks if found
+                $scope.artistBackground = res.data.images; //get artist image if found
             }, function(error) {
             });
           }
           getAlbum(artistId);
           $('.fade-albums').css('display', 'flex');
         }
-        if ($(e.currentTarget).hasClass('album')) {
+        if (target.hasClass('album')) {
           //if album, then look for tracks
           var albumId = $(e.currentTarget).attr("data-id");
           var getTracks = function (artist) {

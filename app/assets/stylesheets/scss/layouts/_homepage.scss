@@ -75,7 +75,7 @@
 	background-color: $martinique;
 	height: 0;
 	@include lg {
-		height: 60vh;
+		min-height: 60vh;
 	}
 	&#backgroundContainer {
 		display: none;
@@ -84,7 +84,7 @@
 		}
 	}
 	.message {
-		color: rgba(white, .05);
+		color: rgba(white, .1);
 		font-size: 1.25rem;
 		margin-top: 1rem;
 	}

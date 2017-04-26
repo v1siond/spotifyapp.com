@@ -3045,14 +3045,14 @@ a {
   height: 0; }
   @media (min-width: 64em) {
     .result-container {
-      height: 60vh; } }
+      min-height: 60vh; } }
   .result-container#backgroundContainer {
     display: none; }
     @media (min-width: 64em) {
       .result-container#backgroundContainer {
         display: flex; } }
   .result-container .message {
-    color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.1);
     font-size: 1.25rem;
     margin-top: 1rem; }
   .result-container .artist .artist-icon {

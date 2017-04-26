@@ -5,27 +5,40 @@ angular.module('spotify', [])
       $scope.artistImage = 'assets/images/artist-icon.png'; //artist icon
       var audioObject = null;
       //search function
-      $scope.startSearch = function() {
-        //asign input value
-        var query = $('#artist').val();
-        var getArtist = function (query, type=['album', 'artist']) {
-          var url = "https://api.spotify.com/v1/search?query=" + query + '&offset=0&limit=20&type='+ type;
-          $http.get(url, {cache:true})
-            .then(function(res) {
-              $('.result-container').css('height', 'auto'); //adapts container height to match results
-              $scope.artists = res.data.artists.items; //get artist if found
-              $scope.albums = res.data.albums.items; //get album if found
-              $scope.result = $scope.artists.concat($scope.albums); //concat artist and albums into one array
-              if ($scope.result.length > 0) {
-                $('#backgroundContainer').hide(); //hide the magnify icon
-              }else {
-                $('#backgroundContainer').show();
-              }
-          }, function(error) {
-            $('#backgroundContainer').show();
-          });
+      $scope.startSearch = function() {    
+        $('.results').hide();//hide previous searchs
+        var query = $('#artist').val();//asign input value
+        if (query !== '' && query !== null) {
+          var getArtist = function (query, type=['album', 'artist']) {
+            var url = "https://api.spotify.com/v1/search?query=" + query + '&offset=0&limit=20&type='+ type;
+            $http.get(url, {cache:true})
+              .then(function(res) {
+                $scope.artists = res.data.artists.items; //get artist if found
+                $scope.albums = res.data.albums.items; //get album if found
+                $scope.result = $scope.artists.concat($scope.albums); //concat artist and albums into one array
+                if ($scope.result.length > 0) {
+                  $('#backgroundContainer').hide(); //hide the magnify icon
+                  $('.results').show(); //shows results
+                }else {
+                  $('#backgroundContainer').show();
+                  $('.message').text('').append("<i class='fa fa-frown-o' aria-hidden='true'></i> We couldn't find any artist nor album with that name");
+                  setTimeout(
+                    function() {
+                      $('.message').text('Your result will appear here');
+                    }, 5000);
+                }
+            }, function(error) {
+              $('#backgroundContainer').show();
+            });
+          }
+          getArtist(query);
+        }else {
+          $('.message').text('').append("ERROR: We can't find what you want if you don't tell us what it is");
+          setTimeout(
+            function() {
+              $('.message').text('Your result will appear here');
+            }, 5000);
         }
-        getArtist(query);
       }
 
       //Search artist albums

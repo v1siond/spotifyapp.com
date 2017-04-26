@@ -2845,7 +2845,7 @@ a {
       @media (min-width: 64em) {
         .fade-screen .artist-details.mobile {
           display: none; } }
-      .fade-screen .artist-details.mobile .modal-deatils fieldset {
+      .fade-screen .artist-details.mobile .modal-details fieldset {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -2853,10 +2853,10 @@ a {
         border: none;
         margin: 0;
         padding: 0; }
-      .fade-screen .artist-details.mobile .modal-deatils span {
+      .fade-screen .artist-details.mobile .modal-details span {
         color: rgba(51, 52, 65, 0.7);
         font-weight: 500; }
-      .fade-screen .artist-details.mobile .modal-deatils .name {
+      .fade-screen .artist-details.mobile .modal-details .name {
         color: #333441;
         font-size: 1rem; }
     .fade-screen .artist-details .close-modal {
@@ -2883,26 +2883,32 @@ a {
   .fade-screen .modal-list {
     background: white;
     max-height: 100%;
-    overflow: scroll;
-    padding: 1rem; }
+    overflow: scroll; }
     @media (min-width: 64em) {
       .fade-screen .modal-list {
+        padding: 1rem;
         max-height: 45%; } }
     .fade-screen .modal-list .modal-items {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin-bottom: 1.5rem; }
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      padding: 1rem; }
       @media (min-width: 64em) {
         .fade-screen .modal-list .modal-items {
           margin-bottom: 0;
-          margin-top: 1.5rem; } }
+          margin-top: 1.5rem;
+          padding: 0; } }
+      .fade-screen .modal-list .modal-items:hover {
+        background-color: rgba(51, 52, 65, 0.15);
+        transition: all .5s; }
       .fade-screen .modal-list .modal-items .moda-art {
         display: none; }
         @media (min-width: 64em) {
           .fade-screen .modal-list .modal-items .moda-art {
             width: 15%; } }
-      .fade-screen .modal-list .modal-items .modal-deatils {
+      .fade-screen .modal-list .modal-items .modal-details {
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -2912,12 +2918,12 @@ a {
         align-items: flex-start;
         width: 100%; }
         @media (min-width: 64em) {
-          .fade-screen .modal-list .modal-items .modal-deatils {
+          .fade-screen .modal-list .modal-items .modal-details {
             width: 80%; } }
-        .fade-screen .modal-list .modal-items .modal-deatils p {
+        .fade-screen .modal-list .modal-items .modal-details p {
           color: rgba(51, 52, 65, 0.7);
           font-weight: 500; }
-    .fade-screen .modal-list.album-tracks .modal-deatils {
+    .fade-screen .modal-list.album-tracks .modal-details {
       width: 100%; }
 
 @keyframes fadein {
@@ -3045,18 +3051,42 @@ a {
     background-image: url("/assets/images/artist-icon.png");
     background-size: cover;
     background-position: center center;
-    background-repeat: no-repeat; }
+    background-repeat: no-repeat;
+    bottom: .5rem;
+    height: 1rem;
+    left: .5rem;
+    width: 1rem; }
+    @media (min-width: 35.5em) {
+      .result-container .artist .artist-icon {
+        height: 1.5rem;
+        width: 1.5rem; } }
+    @media (min-width: 64em) {
+      .result-container .artist .artist-icon {
+        bottom: 1rem;
+        left: 1rem; } }
   .result-container .album .artist-icon {
     background-image: url("/assets/images/album-icon.png");
     background-size: cover;
     background-position: center center;
-    background-repeat: no-repeat; }
+    background-repeat: no-repeat;
+    bottom: .25rem;
+    height: 2rem;
+    left: .25rem;
+    width: 2rem; }
+    @media (min-width: 35.5em) {
+      .result-container .album .artist-icon {
+        height: 3rem;
+        width: 3rem; } }
+    @media (min-width: 64em) {
+      .result-container .album .artist-icon {
+        bottom: .25rem;
+        left: .25rem; } }
 
 .results {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   margin-top: 2rem; }
   @media (min-width: 64em) {
     .results {
@@ -3089,41 +3119,26 @@ a {
     position: absolute;
     transition: all 1s;
     width: 100%; }
-  .photo .message {
-    bottom: 50%;
+  .photo:after {
+    bottom: 10%;
     color: white;
+    content: '';
     display: none;
     font-size: 0.75rem;
     font-weight: 500;
     opacity: 0;
     position: relative;
     text-align: center;
-    top: 50%;
+    top: 90%;
     transition: all 5s;
     z-index: 1; }
-    @media (min-width: 35.5em) {
-      .photo .message {
-        bottom: 40%;
-        top: 60%; } }
-    @media (min-width: 48em) {
-      .photo .message {
-        bottom: 35%;
-        font-size: .85rem;
-        top: 65%; } }
-  .photo .artist-icon {
-    bottom: .5rem;
-    height: 1rem;
-    left: .5rem;
-    position: absolute;
-    width: 1rem; }
-    @media (min-width: 35.5em) {
-      .photo .artist-icon {
-        height: 1.5rem;
-        width: 1.5rem; } }
     @media (min-width: 64em) {
-      .photo .artist-icon {
-        bottom: 1rem;
-        left: 1rem; } }
+      .photo:after {
+        bottom: 30%;
+        font-size: .85rem;
+        top: 70%; } }
+  .photo .artist-icon {
+    position: absolute; }
 
 .gal-item {
   display: flex;
@@ -3139,7 +3154,7 @@ a {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin: 0 .5rem 3rem; } }
+      margin: 0 1rem 3rem; } }
   .gal-item:hover .photo:before {
     background-color: rgba(51, 52, 65, 0.3);
     background-image: url("../images/play.png");
@@ -3157,13 +3172,24 @@ a {
     @media (min-width: 64em) {
       .gal-item:hover .photo:before {
         background-size: 50%; } }
-  .gal-item:hover .background {
-    filter: blur(0.2rem); }
-  .gal-item:hover .message {
+  .gal-item:hover .photo:after {
     display: block;
     opacity: 1; }
+  .gal-item:hover .photo:after {
+    display: block;
+    opacity: 1; }
+  .gal-item:hover .background {
+    filter: blur(0.2rem); }
   .gal-item:hover .artist-icon {
     display: none; }
+  .gal-item.album:hover .photo:after {
+    content: 'View Album';
+    display: block;
+    opacity: 1; }
+  .gal-item.artist:hover .photo:after {
+    content: 'View Artist';
+    display: block;
+    opacity: 1; }
 
 .footer-powered {
   display: flex;

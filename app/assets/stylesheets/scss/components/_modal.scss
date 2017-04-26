@@ -46,7 +46,7 @@
     	@include lg {
     		display: none;
     	}
-    	.modal-deatils {
+    	.modal-details {
     		fieldset {
     			@include between_flex();
 					align-items: flex-start;
@@ -96,17 +96,24 @@
   .modal-list {
   	background: white;
   	max-height: 100%;
-    overflow: scroll;
-  	padding: 1rem;
+    overflow: scroll;  	
   	@include lg {
+  		padding: 1rem;
   		max-height: 45%;
   	}
 		.modal-items {
 			@include between_flex();
+			cursor: pointer;
 			margin-bottom: 1.5rem;
+			padding: 1rem;
 			@include lg {
 				margin-bottom: 0;
 				margin-top: 1.5rem;
+				padding: 0;
+			}
+			&:hover {
+				background-color: rgba($tuna, .15);
+				transition: all .5s;
 			}
 			.moda-art {
 				display: none;
@@ -114,7 +121,7 @@
 					width: 15%;
 				}
 			}
-			.modal-deatils {
+			.modal-details {
 				@include column_flex();
 				color: $tuna;
 				height: 10%;
@@ -129,7 +136,7 @@
 				}
 			}
 		}
-		&.album-tracks .modal-deatils {
+		&.album-tracks .modal-details {
 			width: 100%;
 		}
   }

@@ -9,12 +9,10 @@
 		<div class="{{item.type}} gal-item visiond-20 visiond-lg-4" ng-repeat="item in result" data-id="{{item.id}}" ng-click="artistAlbum($event)">
 			<figure class="photo visiond-20" ng-if="item.images.length === 0">
 				<div class="background" style="background-image: url('{{defaultImage}}')"></div>
-				<p class="message">View Albums</p>
 				<i class="artist-icon"></i>
 			</figure>
 			<figure class="photo visiond-6 visiond-lg-20" ng-repeat="image in item.images | limitTo:quantity">
 				<div class="background" style="background-image: url('{{image.url}}')"></div>
-				<p class="message">View Albums</p>
 				<i class="artist-icon"></i>
 			</figure>
     	<div class="headline name visiond-14 visiond-lg-20">

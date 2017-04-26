@@ -6,7 +6,7 @@
 					<figure class="modal-art visiond-4">
 						<img src="{{background.url}}" alt="Album Art">						
 					</figure>
-					<div class="modal-deatils visiond-15">
+					<div class="modal-details visiond-15">
 						<fieldset class="visiond-20">
 							<span>Tracks on</span>
 							<a class="close-modal" ng-click="closeModal()"><img src="./assets/images/close.png" alt="Geek label"></a>		
@@ -31,7 +31,7 @@
 				<figure class="moda-art album-art" ng-repeat="image in item.images | limitTo:quantity" >
 					<img ng-src="{{image.url}}" alt="Artist Photo">
 				</figure>
-				<article class="modal-deatils track-details">
+				<article class="modal-details track-details" ng-click="previewAudio($event)" data-id="{{item.preview_url}}">
 					<h3 class="track-name">{{item.name}}</h3>
 					<p class="track-duration">{{item.duration_ms | formatTime}}</p>
 				</article>			

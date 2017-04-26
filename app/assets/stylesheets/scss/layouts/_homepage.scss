@@ -85,18 +85,41 @@
 		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;
+    bottom: .5rem;
+    height: 1rem;
+    left: .5rem;
+    width: 1rem;
+    @include sm {
+	    height: 1.5rem;
+	    width: 1.5rem;
+    }
+    @include lg {
+	    bottom: 1rem;
+	    left: 1rem;
+    }
 	}
 	.album .artist-icon {
 		background-image: url("/assets/images/album-icon.png");
 		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;
+    bottom: .25rem;
+    height: 2rem;
+    left: .25rem;
+    width: 2rem;
+    @include sm {
+	    height: 3rem;
+	    width: 3rem;
+    }
+    @include lg {
+	    bottom: .25rem;
+	    left: .25rem;
+    }
 	}
 }
 
 .results {
-	@include around_flex();
-	align-items: flex-start;
+	@include centered_flex();
 	margin-top: 2rem;
 	@include lg {
 		padding: 0 7.5%;
@@ -132,42 +155,27 @@
   	transition: all 1s;
   	width: 100%;
   }
-	.message {
-		bottom: 50%;
+	&:after {
+		bottom: 10%;
 		color: white;
+		content: '';
 		display: none;
 		font-size: $medium-font-size;
 		font-weight: 500;
 		opacity: 0;
 		position: relative;
 		text-align: center;
-		top: 50%;
+		top: 90%;
 		transition: all 5s;
 		z-index: 1;
-		@include sm {
-			bottom: 40%;
-			top: 60%;
-		}
-		@include md {
-			bottom: 35%;
+		@include lg {
+			bottom: 30%;
 			font-size: .85rem;
-			top: 65%;
+			top: 70%;
 		}
 	}
 	.artist-icon {
-    bottom: .5rem;
-    height: 1rem;
-    left: .5rem;
     position: absolute;
-    width: 1rem;
-    @include sm {
-	    height: 1.5rem;
-	    width: 1.5rem;
-    }
-    @include lg {
-	    bottom: 1rem;
-	    left: 1rem;
-    }
 	}
 }
 
@@ -180,7 +188,7 @@
   margin: 0 .5rem 1rem;
   @include lg {
   	@include column_flex();
-  	margin: 0 .5rem 3rem;
+  	margin: 0 1rem 3rem;
   }
   &:hover {
 	  .photo:before {
@@ -201,16 +209,30 @@
 	  		background-size: 50%;
 	  	}
 	  }
+		.photo:after {
+			display: block;
+			opacity: 1;
+	  }
+		.photo:after {
+			display: block;
+			opacity: 1;
+	  }
 	  .background {
 	  	filter: blur(.2rem);
 	  }
-		.message {
-			display: block;
-			opacity: 1;
-		}
 		.artist-icon {
 			display: none;
 		}
+  }
+  &.album:hover .photo:after {
+		content: 'View Album';
+		display: block;
+		opacity: 1;
+  }
+  &.artist:hover .photo:after {
+		content: 'View Artist';
+		display: block;
+		opacity: 1;
   }
 }
 

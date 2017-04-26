@@ -3,6 +3,7 @@ angular.module('spotify', [])
       $scope.quantity = 1; //limit images and others array results
       $scope.defaultImage = 'assets/images/deafult-image.jpg'; //default image
       $scope.artistImage = 'assets/images/artist-icon.png'; //artist icon
+      var audioObject = null;
       //search function
       $scope.startSearch = function() {
         //asign input value
@@ -65,7 +66,7 @@ angular.module('spotify', [])
             });
             $http.get(urlt)
               .then(function(res) {
-                $scope.albumBackground = res.data.images; //get tracks if found
+                $scope.albumBackground = res.data.images; //get album art if found
             }, function(error) {
               alert('error');
             });
@@ -73,6 +74,52 @@ angular.module('spotify', [])
           }
           getTracks(albumId);
           $('.fade-tracks').css('display', 'flex');
+        }
+      }
+      $scope.previewAudio = function(e) {
+        var target = $(e.currentTarget);
+        var playingCssClass = "playing";
+        var fetchTracks = function (albumId, callback) {
+            $.ajax({
+                url: 'https://api.spotify.com/v1/albums/' + albumId,
+                success: function (response) {
+                    callback(response);
+                }
+            });
+        }
+        if (target !== null) {
+          if (target.hasClass(playingCssClass)) {
+            audioObject.pause();
+          } else {
+            if (audioObject) {
+              audioObject.pause();
+            }
+            if (target.hasClass('album-details')) {
+              fetchTracks(target.attr("data-id"), function (data) {
+                audioObject = new Audio(data.tracks.items[0].preview_url);
+                audioObject.play();
+                target.addClass(playingCssClass);
+                audioObject.addEventListener('ended', function () {
+                    target.removeClass(playingCssClass);
+                });
+                audioObject.addEventListener('pause', function () {
+                  target.removeClass(playingCssClass);
+                });
+              });
+            }
+            if (target.hasClass('track-details')) {              
+              audioObject = new Audio(target.attr("data-id"));
+              audioObject.play();
+              target.addClass(playingCssClass);
+              audioObject.addEventListener('ended', function () {
+                  target.removeClass(playingCssClass);
+              });
+              audioObject.pause
+              audioObject.addEventListener('pause', function () {
+                target.removeClass(playingCssClass);
+              });
+            }
+          }
         }
       }
       $scope.closeModal = function(e) {

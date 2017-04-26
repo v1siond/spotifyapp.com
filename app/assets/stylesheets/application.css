@@ -2968,14 +2968,22 @@ a {
   height: 100%; }
   .banner-content .arrow-down-container {
     position: relative;
-    width: 100%;
-    height: 5rem; }
+    width: 100%; }
+    @media (min-width: 30em) {
+      .banner-content .arrow-down-container {
+        height: 5rem; } }
     .banner-content .arrow-down-container .arrow-down {
       left: 50%;
       position: absolute;
       top: 0;
       transform: translateX(-50%);
       width: 2rem; }
+      @media (min-width: 48em) {
+        .banner-content .arrow-down-container .arrow-down {
+          width: 4rem; } }
+      @media (min-width: 64em) {
+        .banner-content .arrow-down-container .arrow-down {
+          width: 2rem; } }
       .banner-content .arrow-down-container .arrow-down:hover {
         animation: up_down .5s infinite alternate; }
 

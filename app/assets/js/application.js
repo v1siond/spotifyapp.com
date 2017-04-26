@@ -1,12 +1,17 @@
-$(document).ready(function(){
-    topMargin();
+$(window).on('load', function() {
+	topMargin();
 });
 
 $(window).resize(function() {
-  topMargin();
+	topMargin();
 });
 
 var topMargin = function() {  
-	var head_height = $('.banner-header').height();
-	$('.banner-image').css('margin-top', head_height/1.25 + 'px');	
+  setTimeout(
+    function() {
+			var head_height = $('.banner-header').height();
+			console.log(head_height);
+			$('.banner-image').css('margin-top', head_height/1.25 + 'px');
+    }, 100);
+
 };

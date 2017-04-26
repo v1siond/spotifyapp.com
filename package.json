@@ -1,9 +1,10 @@
 {
-  "name": "spotify-test",
+  "name": "spotifyapp",
   "description": "Simple spotify app to find artist",
   "version": "0.0.0",
+  "repository": "https://github.com/v1siond/spotifyapp.com",
   "homepage": "https://github.com/v1siond/spotifyapp.com",
-  "licente": "Alexander Pulido",
+  "licente": "unlicensed",
   "private": false,
   "devDependencies": {
     "bower": "^1.7.7",

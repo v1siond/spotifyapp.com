@@ -122,6 +122,7 @@ angular.module('spotify', [])
             $http.get(urlt)
               .then(function(res) {
                 $scope.albumBackground = res.data.images; //get album art if found
+                $scope.albumName = res.data.name;
             }, function(error) {
             });
 

@@ -84,8 +84,9 @@
       }
     }
     .name {
-      color: white;
       align-self: flex-end;
+      color: white;
+      text-shadow: 0 0 0.3rem $tuna;
     }
   }
   .headline {

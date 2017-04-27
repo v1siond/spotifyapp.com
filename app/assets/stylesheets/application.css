@@ -2875,8 +2875,9 @@ a {
       .fade-screen .artist-details .close-modal:active, .fade-screen .artist-details .close-modal:focus, .fade-screen .artist-details .close-modal:hover {
         animation: grow 1s infinite alternate; }
     .fade-screen .artist-details .name {
+      align-self: flex-end;
       color: white;
-      align-self: flex-end; }
+      text-shadow: 0 0 0.3rem #333441; }
   .fade-screen .headline {
     border-bottom: 0.15rem solid rgba(51, 52, 65, 0.2);
     border-radius: 0;

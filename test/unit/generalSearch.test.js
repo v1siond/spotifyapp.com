@@ -28,7 +28,6 @@ describe('movie app tests', function () {
 	    el = $compile(angular.element(simpleHtml))($scope);
 	    $scope.$digest();
       var input = el.find('#artist');
-      console.log(input);
       $scope.$apply(function() {
         angular.element(input).val('lamb of god');
       });

@@ -3,7 +3,7 @@ angular
     .config(function($routeProvider) {
       $routeProvider
         .when('/', {
-          templateUrl: '/asdasd/index.html',
+          templateUrl: 'index.html',
           controller: 'ctrlSearch'
         })
         .otherwise( {

@@ -1,15 +1,5 @@
 angular
     .module('spotify', ['ngRoute'])
-    .config(function($routeProvider) {
-      $routeProvider
-        .when('/', {
-          templateUrl: 'index.html',
-          controller: 'ctrlSearch'
-        })
-        .otherwise( {
-          redirectTo: '/'
-        });
-    })
     //header partial
     .directive('ngHeader', function(){
       return{

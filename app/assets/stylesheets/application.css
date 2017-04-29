@@ -3016,12 +3016,9 @@ a {
   justify-content: center;
   height: auto;
   margin-top: 1rem; }
-  @media (min-width: 48em) {
-    .searcher-container {
-      margin-top: 0; } }
   @media (min-width: 64em) {
     .searcher-container {
-      margin-top: 1rem;
+      margin-top: 0;
       height: 5rem; } }
   .searcher-container .searcher-wrapper {
     border: none;
@@ -3041,7 +3038,7 @@ a {
       outline: none; }
   .searcher-container .searcher-button {
     margin: 1rem auto; }
-    @media (min-width: 48em) {
+    @media (min-width: 64em) {
       .searcher-container .searcher-button {
         margin: auto;
         position: absolute;

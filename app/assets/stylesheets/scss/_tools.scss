@@ -101,11 +101,8 @@
   @include centered_flex();
   height: auto;
   margin-top: 1rem;
-  @include md {
-    margin-top: 0;
-  }
   @include lg {
-    margin-top: 1rem;
+    margin-top: 0;
     height: 5rem;
   }
   .searcher-wrapper {

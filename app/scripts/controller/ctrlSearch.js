@@ -11,9 +11,12 @@ angular.module('spotify')
         $('.results').hide();//hide previous searchs
         if (target.hasClass('next') && $scope.paginationNext == true) {
           offset = offset + 20;
-        }
-        if (target.hasClass('prev') && $scope.paginationPrev == true) {
-          offset = offset - 20;
+        }else {
+          if (target.hasClass('prev') && $scope.paginationPrev == true) {
+            offset = offset - 20;
+          }else {
+            offset = 0;
+          }
         }
         var getArtist = function (type=['album', 'artist']) {
           var query = $('#artist').val();//asign input value
@@ -21,6 +24,11 @@ angular.module('spotify')
           if (query !== '' && query !== null) {
             $http.get(url, {cache:true})
               .then(function(res) {
+                $scope.artists = {};
+                $scope.albums = {};
+                $scope.result = {}; 
+                $scope.paginationNext = false;
+                $scope.paginationPrev = false;
                 $scope.artists = res.data.artists.items; //get artist if found
                 $scope.albums = res.data.albums.items; //get album if found
                 $scope.result = $scope.artists.concat($scope.albums); //concat artist and albums into one array
@@ -37,13 +45,9 @@ angular.module('spotify')
                 }
                 if (res.data.artists.next !== null || res.data.albums.next !== null) {
                   $scope.paginationNext = true;
-                }else {
-                  $scope.paginationNext = false;
                 }
                 if (res.data.artists.previous !== null || res.data.albums.previous !== null) {
                   $scope.paginationPrev = true;
-                }else {
-                  $scope.paginationPrev = false;
                 }
             }, function(error) {
               //if the user search more than once, and there's no results, this will show the magnify again
@@ -86,6 +90,9 @@ angular.module('spotify')
             var url = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
             var albums = [];
             $scope.albumYear = [{}];
+            $scope.artistAlbums = {};
+            $scope.artistName = {};
+            $scope.artistBackground = {};
             var c = 0;
 
             $http.get(url)

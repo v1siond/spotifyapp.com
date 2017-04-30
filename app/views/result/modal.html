@@ -2,9 +2,12 @@
 	<div class="visiond-18 visiond-lg-8 modal-window">
 		<header class="modal-header artist-albums visiond-20">
 			<section class="photo visiond-20">
-				<div class="artist-details mobile visiond-20" ng-repeat="background in artistBackground | limitTo:quantity">
-					<figure class="modal-art visiond-4">
+				<div class="artist-details mobile visiond-20">
+					<figure class="modal-art visiond-4"  ng-repeat="background in artistBackground | limitTo:quantity">
 						<img src="{{background.url}}" alt="Artist Photo">
+					</figure>
+					<figure class="modal-art visiond-4"  ng-if="artistBackground.length == 0">
+						<img src="{{defaultImage}}" alt="Artist Photo">
 					</figure>
 					<div class="modal-details visiond-15">
 						<div class="headline-container visiond-20">
@@ -15,7 +18,11 @@
 					</div>					
 				</div>
 				<div class="artist-details desktop visiond-20" style='background-image: url("{{background.url}}");' ng-repeat="background in artistBackground | limitTo:quantity">
-					<h2 class="name">{{artistName}}</h2>
+					<h2 class="name visiond-lg-20">{{artistName}}</h2>
+					<a class="close-modal" ng-click="closeModal()"></a>
+				</div>
+				<div class="artist-details desktop visiond-20" ng-if="artistBackground.length == 0" style='background-image: url("{{defaultImage}}");'>
+					<h2 class="name visiond-lg-20">{{artistName}}</h2>
 					<a class="close-modal" ng-click="closeModal()"></a>
 				</div>
 			</section>

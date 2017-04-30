@@ -1,0 +1,9 @@
+{
+  "plugins": [
+    "stylelint-order",
+    "stylelint-scss"
+  ],
+  "rules": {
+    "value-no-vendor-prefix": true
+  }
+}

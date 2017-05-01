@@ -17,5 +17,5 @@ var topMargin = function() {
 
 var animateSection = function() {
   var y = $('.arrow-down').offset().top; // grabs the #id element offset location
-  $('html,body').animate({scrollTop: y}, 1000); // animate the scroll	
+  $('html,body').animate({scrollTop: y}, 3000); // animate the scroll	
 }

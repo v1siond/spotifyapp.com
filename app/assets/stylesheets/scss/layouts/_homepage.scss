@@ -1,273 +1,281 @@
 @keyframes up_down {
-  0% {top: 0;}
-  100%{top: -1rem;}
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -1rem;
+  }
 }
 
 @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .banner-container {
-	background: $mulberry;
-	height: 100vh;
-	@include lg {
-		height: 85vh;
-	}
+  background: $mulberry;
+  height: 100vh;
+  @include lg {
+    height: 85vh;
+  }
 }
 
 .banner-header {
-	@include between_flex();
-	padding: 2.5% 3.5%;
-	position: absolute;
-	.logo {
-	  width: 5rem;	
-	}
+  @include between_flex();
+  padding: 2.5% 3.5%;
+  position: absolute;
+  .logo {
+    width: 5rem;
+  }
 }
 
 .banner-content {
-	@include column_flex();
-	height: 100%;
-	.arrow-down-container {
-		position: relative;
-		width: 100%;
-		@include x-sm {
-			height: 5rem;
-		}
-		.arrow-down {
-			left: 50%;
-			position: absolute;
-			top: 0;
-			transform: translateX(-50%);
-			width: 2rem;
-			@include md {
-				width: 4rem;
-			}
-			@include lg {
-				width: 2rem;				
-			}
-			&:hover {
-				animation: up_down .5s infinite alternate;
-			}
-		}
-	}
+  @include column_flex();
+  height: 100%;
+  .arrow-down-container {
+    position: relative;
+    width: 100%;
+    @include x-sm {
+      height: 5rem;
+    }
+    .arrow-down {
+      left: 50%;
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+      width: 2rem;
+      @include md {
+        width: 4rem;
+      }
+      @include lg {
+        width: 2rem;
+      }
+      &:hover {
+        animation: up_down .5s infinite alternate;
+      }
+    }
+  }
 }
 
 .searcher-button {
-	@include mulberry-button();
-	margin-bottom: 1rem;
+  @include mulberry-button();
+  margin-bottom: 1rem;
 }
 
 .searcher-container {
-	@include searcher-container();
-	.searcher-text {
+  @include searcher-container();
+  .searcher-text {
     @include search-input();
-	  padding: .7rem;
-	}
-	.searcher-button {
-	  margin: 1rem auto;
-	  @include lg {
-	  	margin: auto;
-	    position: absolute;
-	    right: .3rem;
-	    top: .35rem;
-	  }
-	}
+    padding: .7rem;
+  }
+  .searcher-button {
+    margin: 1rem auto;
+    @include lg {
+      margin: auto;
+      position: absolute;
+      right: .3rem;
+      top: .35rem;
+    }
+  }
 }
 
 .actions {
-	@include centered_flex();
-	.searcher-button {
-		margin: 0 1rem 1rem;
-		@include lg {
-			padding: .7rem;
-		}
-	}	
-} 
+  @include centered_flex();
+  .searcher-button {
+    margin: 0 1rem 1rem;
+    @include lg {
+      padding: .7rem;
+    }
+  }
+}
+
+.photo {
+  border-radius: .25rem .25rem 0 0;
+  height: 4rem;
+  position: relative;
+  @include sm {
+    height: 7rem;
+  }
+  @include lg {
+    height: 15rem;
+  }
+  .background {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: absolute;
+    transition: all 1s;
+    width: 100%;
+  }
+  &:after {
+    bottom: 10%;
+    color: white;
+    content: '';
+    display: none;
+    font-size: $medium-font-size;
+    font-weight: 500;
+    opacity: 0;
+    position: relative;
+    text-align: center;
+    top: 80%;
+    transition: all 5s;
+    z-index: 1;
+    @include lg {
+      bottom: 30%;
+      font-size: .85rem;
+      top: 70%;
+    }
+  }
+  .artist-icon {
+    position: absolute;
+  }
+}
 
 .result-container {
-	@include column_flex();
-	background-color: $martinique;
-	min-height: 0;
-	@include lg {
-		min-height: 60vh;
-	}
-	&#backgroundContainer {
-		display: none;
-		@include lg {
-			display: flex;
-		}
-	}
-	.message {
-		color: rgba(white, .1);
-		font-size: 1.25rem;
-		margin-top: 1rem;
-	}
-	.artist .artist-icon {
-		background-image: url("/assets/images/artist-icon.png");
-		background-size: cover;
-		background-position: center center;
-		background-repeat: no-repeat;
+  @include column_flex();
+  background-color: $martinique;
+  min-height: 0;
+  @include lg {
+    min-height: 60vh;
+  }
+  &#backgroundContainer {
+    display: none;
+    @include lg {
+      display: flex;
+    }
+  }
+  .message {
+    color: rgba(white, .1);
+    font-size: 1.25rem;
+    margin-top: 1rem;
+  }
+  .artist .artist-icon,
+  .album .artist-icon {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .artist .artist-icon {
+    background-image: url('/assets/images/artist-icon.png');
     bottom: .5rem;
     height: 1rem;
     left: .5rem;
     width: 1rem;
     @include sm {
-	    height: 1.5rem;
-	    width: 1.5rem;
+      height: 1.5rem;
+      width: 1.5rem;
     }
     @include lg {
-	    bottom: 1rem;
-	    left: 1rem;
+      bottom: 1rem;
+      left: 1rem;
     }
-	}
-	.album .artist-icon {
-		background-image: url("/assets/images/album-icon.png");
-		background-size: cover;
-		background-position: center center;
-		background-repeat: no-repeat;
+  }
+  .album .artist-icon {
+    background-image: url('/assets/images/album-icon.png');
     bottom: .25rem;
     height: 2rem;
     left: .25rem;
     width: 2rem;
     @include sm {
-	    height: 3rem;
-	    width: 3rem;
+      height: 3rem;
+      width: 3rem;
     }
     @include lg {
-	    bottom: .25rem;
-	    left: .25rem;
+      bottom: .25rem;
+      left: .25rem;
     }
-	}
+  }
 }
 
 .results {
-	@include centered_flex();
-	margin-top: 2rem;
-	@include lg {
-		padding: 0 7.5%;
-	}
-	.headline {
-    border-top: .15rem solid rgba($tuna, .2);
-		height: 4rem;
-		@include sm {
-		  height: 7rem;
-		}
-		@include lg {
-		  height: 4rem;
-		}
-	}
-}
-
-.photo {
-	border-radius: .25rem .25rem 0 0;
-	height: 4rem;
-	position: relative;
-	@include sm {
-		height: 7rem;
-	}
-	@include lg {
-		height: 15rem;
-	}
-  .background {
-		background-position: center center;
-		background-repeat: no-repeat;
-		background-size: cover;
-		height: 100%;
-  	position: absolute;
-  	transition: all 1s;
-  	width: 100%;
+  @include centered_flex();
+  margin-top: 2rem;
+  @include lg {
+    padding: 0 7.5%;
   }
-	&:after {
-		bottom: 10%;
-		color: white;
-		content: '';
-		display: none;
-		font-size: $medium-font-size;
-		font-weight: 500;
-		opacity: 0;
-		position: relative;
-		text-align: center;
-		top: 80%;
-		transition: all 5s;
-		z-index: 1;
-		@include lg {
-			bottom: 30%;
-			font-size: .85rem;
-			top: 70%;
-		}
-	}
-	.artist-icon {
-    position: absolute;
-	}
+  .headline {
+    border-top: .15rem solid rgba($tuna, .2);
+    height: 4rem;
+    @include sm {
+      height: 7rem;
+    }
+    @include lg {
+      height: 4rem;
+    }
+  }
 }
 
 .gal-item {
-	@include flex_box();		
-	align-items: flex-start;
-	border-radius: .15rem;
-	box-shadow: 0 0 1rem rgba(black, .55);
-	justify-content: space-between;
+  @include flex_box();
+  align-items: flex-start;
+  border-radius: .15rem;
+  box-shadow: 0 0 1rem rgba(black, .55);
+  justify-content: space-between;
   margin: 0 .5rem 1rem;
   @include lg {
-  	@include column_flex();
-  	margin: 0 1rem 3rem;
+    @include column_flex();
+    margin: 0 1rem 3rem;
   }
   &:hover {
-	  .photo:before {
-	  	animation: fadein .5s;
-	  	background-color: rgba($tuna, .3);
-	  	background-image: url("../images/play.png");
-	  	background-position: center center;
-	  	background-repeat: no-repeat;
-	  	background-size: 40%;
-	  	content: '';
-	  	height: 100%;
-	  	position: absolute;
-	  	width: 100%;
-	  	z-index: 1;
-	  	@include md {
-	  		background-size: 35%;
-	  	}
-	  	@include lg {
-	  		background-size: 50%;
-	  	}
-	  }
-		.photo:after {
-			display: block;
-			opacity: 1;
-	  }
-		.photo:after {
-			animation: fadein .5s;
-			display: block;
-	  }
-	  .background {
-	  	filter: blur(.2rem);
-	  }
-		.artist-icon {
-			display: none;
-		}
+    .photo:before {
+      animation: fadein .5s;
+      background-color: rgba($tuna, .3);
+      background-image: url('../images/play.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 40%;
+      content: '';
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+      @include md {
+        background-size: 35%;
+      }
+      @include lg {
+        background-size: 50%;
+      }
+    }
+    .photo:after {
+      display: block;
+      opacity: 1;
+    }
+    .photo:after {
+      animation: fadein .5s;
+      display: block;
+    }
+    .background {
+      filter: blur(.2rem);
+    }
+    .artist-icon {
+      display: none;
+    }
   }
   &.album:hover .photo:after {
-		content: 'View Album';
-		display: block;
-		opacity: 1;
+    content: 'View Album';
+    display: block;
+    opacity: 1;
   }
   &.artist:hover .photo:after {
-		content: 'View Artist';
-		display: block;
-		opacity: 1;
+    content: 'View Artist';
+    display: block;
+    opacity: 1;
   }
 }
 
 .footer-powered {
-	@include centered_flex();
-	height: 5rem;
-	.text {
-		font-size: $medium-font-size;
-		font-weight: 500;
-		@include lg {
-			font-size: .9rem;
-		}
-	}
+  @include centered_flex();
+  height: 5rem;
+  .text {
+    font-size: $medium-font-size;
+    font-weight: 500;
+    @include lg {
+      font-size: .9rem;
+    }
+  }
 }

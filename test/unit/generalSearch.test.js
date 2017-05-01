@@ -1,40 +1,47 @@
-describe('movie app tests', function () {
-  var $controller;
-  var $httpBackend;
-  var $scope;
-	var el, $compile, simpleHtml;
-	
-  beforeEach(module('spotify'));
-  beforeEach(inject(function($rootScope, _$controller_, _$httpBackend_, $templateCache, _$compile_) {
-    $controller = _$controller_;
-    $scope = $rootScope.$new();
-    $httpBackend = _$httpBackend_;
-    $templateCache.put('./views/search/search.html', [
-      '<section class="searcher-container visiond-20" id="searcher">',
-      '	<form class="visiond-18 visiond-lg-8">',
-      '		<fieldset class="searcher-wrapper">',
-      '			<input type="text" id="artist" value="lamb of god">',
-      '			<button ng-click="startSearch($event)" type="submit" class="searcher-button visiond-13 visiond-lg-5" id="searchButton">search</button>',
-      '		</fieldset>',
-      '	</form>',
-      '</section>'
-    ].join(''));
-    $compile = _$compile_;
-  }));
-  describe('General Search', function() {
-    it('should look for artist or album', inject(function($http) {
-      $controller('ctrlSearch', { $scope: $scope });
-	    simpleHtml = '<div ng-search id="searcher-container"></div>';
-	    el = $compile(angular.element(simpleHtml))($scope);
-	    $scope.$digest();
-      var input = el.find('#artist');
-      $scope.$apply(function() {
-        angular.element(input).val('lamb of god');
+angular.module('spotify', [])
+  .controller('ctrlSearch', function($scope, $http) {
+    $scope.startSearch = function(e) {
+      $scope.currentTarget = e.currentTarget;
+      var query ='lamb of god';
+      var offset = 0;
+      var type=['album', 'artist'];
+      var url = "https://api.spotify.com/v1/search?query=" + query + '&offset='+ offset +'&limit=20&type='+ type;
+      $http.get(url)
+        .then(function(res) {
+          $scope.result = res.data;
+      }, function(error) {
       });
-      el.find('.searcher-button').click();
-      //$scope.startSearch();
-      //$httpBackend.flush();
-      //expect($scope.movies).toEqual(testData.query.starwars);
-    }));
+    }
   });
+
+describe('Search Controller', function() {
+
+  var $scope, $compile;
+  var response = [
+    {artist: 'lamb of God', id: "asdjaksd89123khasd"},
+    {album: [ {name: "Ashes of the Wake"}, {name: "Sacrament"}]}
+  ];
+  beforeEach(module('spotify'));
+
+  beforeEach(inject(function($rootScope, _$compile_, _$controller_, _$httpBackend_) {
+    $compile = _$compile_;
+    $scope = $rootScope.$new();
+    $controller = _$controller_;
+    $httpBackend = _$httpBackend_;
+    $httpBackend.whenGET("https://api.spotify.com/v1/search?query=lamb of god&offset=0&limit=20&type=album,artist").respond(200, response);
+  }));
+
+  it('should start search', inject(function() {   
+    var html = [
+      '<div ng-controller="ctrlSearch">',
+      ' <button ng-click="startSearch($event)" type="submit" class="searcher-button">search</button>',
+      '</div>'].join('');
+    var elm = $compile(angular.element(html))($scope);
+    var button = elm.find(".searcher-button").click();
+    $httpBackend.flush();
+    var result = elm.scope().result;
+    expect(elm.scope().currentTarget).toBeDefined();
+    expect(elm.scope().currentTarget.className).toBe('searcher-button');
+    expect(result).toEqual(response);
+  }));
 });

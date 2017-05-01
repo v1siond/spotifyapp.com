@@ -1,18 +1,20 @@
 html,
 body {
-	background: $tuna;
-	color: white;
+  background: $tuna;
+  color: white;
   font-family: $primary-font-family;
 }
 
-html{
+html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit; 
-	margin: 0;
-	padding: 0;	
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 body,
@@ -23,20 +25,20 @@ div,
 figure,
 section,
 article {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 img {
-	max-width: 100%;
+  max-width: 100%;
 }
 
 a {
-	text-decoration:none;
-	transition: all 1s;
+  text-decoration: none;
+  transition: all 1s;
 }
 
 .headline {
-	@include head_text();
+  @include head_text();
 }

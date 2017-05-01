@@ -6,13 +6,9 @@
 		<link href="assets/images/search.ico" rel="icon" type="image/x-icon" />
 		<link rel="stylesheet" href="assets/stylesheets/normalize.css">
 		<link rel="stylesheet" href="assets/stylesheets/application.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.js"></script>
+		<title>Spotify Search</title>
 	</head>
 	<body>
-		<script src="app.js"></script>
-		<script src="scripts/controller/ctrlSearch.js"></script>
 		<div ng-controller="ctrlSearch" id="main-container"> 
 			<div ng-header id="banner-container"></div>
 			<div ng-search id="searcher-container"></div>
@@ -24,6 +20,12 @@
 				<p class="text">Designed by Geek Label - Powered by Spotify</p>
 			</div>
 		</footer>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.js"></script>
+		<!-- app scripts -->
+		<script src="app.js"></script>
+		<script src="scripts/controller/ctrlSearch.js"></script>
 		<script src="scripts/application.js"></script>
 	</body>
 </html>

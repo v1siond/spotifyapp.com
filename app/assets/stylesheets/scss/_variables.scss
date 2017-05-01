@@ -1,30 +1,46 @@
-// ========== Fonts ==========
+//========== Fonts ==========
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 
-$primary-font-family: 'Raleway', Helvetica, sans-serif, arial;
+//Principal Font
+$primary-font-family: 'Raleway', helvetica, sans-serif, arial;
 
-$medium-font-size: 0.75rem;
-$small-font-size: 0.55rem;
+//Normally used Font Sizes
+$medium-font-size: .75rem;
+$small-font-size: .55rem;
 
-// ========== Breakpoint ==========
-$n_xs: 20em; // extra small devices
-$x-sm: 30em; // small devices 480px+
-$n_sm: 35.5em; // small devices 536px+
-$n_md: 48em; // medium size devices
-$n_lg: 64em; // big size devices
-$n_xl: 80em; // desktop
+//========== Breakpoint ==========
 
-// ========== Colours ==========
-// I use http://chir.ag/projects/name-that-color for color names
-$mulberry: #C8437A; // main color
-$tuna: #333441; // main background color
-$martinique: #383A49; // light black color
+//extra small devices
+$n_xs: 20em;
+//small devices 480px+
+$x-sm: 30em;
+//small devices 536px+
+$n_sm: 35.5em;
+//medium size devices
+$n_md: 48em;
+//big size devices
+$n_lg: 64em;
+//desktop
+$n_xl: 80em;
+
+//========== Colours ==========
+//http://chir.ag/projects/name-that-color for color names
+
+//main color
+$mulberry: #c8437a;
+//main background color
+$tuna: #333441;
+//light black color
+$martinique: #383a49;
 
 //========== Image Url ==========
+
+//image path
 $image_path: '../images/';
 
-// ======== breakpoints for Grid System =========
+//======== breakpoints for Grid System =========
 
-$gridBreakpoints: ("xs":20em,"xsm": 30em,"sm": 35.5em,"md": 48em,"lg": 64em,"xl": 80em);
+//grid break points
+$gridBreakpoints: ('xs': 20em, 'xsm': 30em, 'sm': 35.5em, 'md': 48em, 'lg': 64em, 'xl': 80em);
 $gridsize: 20;

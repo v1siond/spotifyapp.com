@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
-/* General Mixins */
+/*General Mixins*/
 .visiond {
   display: flex;
   flex-wrap: wrap; }
@@ -2753,12 +2753,14 @@ html,
 body {
   background: #333441;
   color: white;
-  font-family: "Raleway", Helvetica, sans-serif, arial; }
+  font-family: "Raleway", helvetica, sans-serif, arial; }
 
 html {
   box-sizing: border-box; }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
   margin: 0;
   padding: 0; }
@@ -2845,6 +2847,25 @@ a {
       @media (min-width: 64em) {
         .fade-screen .artist-details.desktop {
           display: flex; } }
+    .fade-screen .artist-details .name {
+      align-self: flex-start;
+      color: white;
+      order: 2;
+      position: relative;
+      z-index: 1; }
+      @media (min-width: 64em) {
+        .fade-screen .artist-details .name {
+          padding: 1rem;
+          text-shadow: 0 0 0.3rem #333441; }
+          .fade-screen .artist-details .name:after {
+            background: rgba(0, 0, 0, 0.4);
+            bottom: 0;
+            content: '';
+            height: 100%;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            z-index: -1; } }
     .fade-screen .artist-details.mobile {
       background-color: white; }
       @media (min-width: 64em) {
@@ -2882,25 +2903,6 @@ a {
           width: 1.5rem; } }
       .fade-screen .artist-details .close-modal:active, .fade-screen .artist-details .close-modal:focus, .fade-screen .artist-details .close-modal:hover {
         animation: grow 1s infinite alternate; }
-    .fade-screen .artist-details .name {
-      align-self: flex-start;
-      color: white;
-      order: 2;
-      position: relative;
-      z-index: 1; }
-      @media (min-width: 64em) {
-        .fade-screen .artist-details .name {
-          padding: 1rem;
-          text-shadow: 0 0 0.3rem #333441; }
-          .fade-screen .artist-details .name:after {
-            background: rgba(0, 0, 0, 0.4);
-            bottom: 0;
-            content: '';
-            height: 100%;
-            left: 0;
-            position: absolute;
-            width: 100%;
-            z-index: -1; } }
   .fade-screen .headline {
     border-bottom: 0.15rem solid rgba(51, 52, 65, 0.2);
     border-radius: 0;
@@ -2940,16 +2942,16 @@ a {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: flex-start;
         color: #333441;
         height: 10%;
-        align-items: flex-start;
         width: 100%; }
         @media (min-width: 64em) {
           .fade-screen .modal-list .modal-items .modal-details {
             width: 80%; } }
-        .fade-screen .modal-list .modal-items .modal-details p {
-          color: rgba(51, 52, 65, 0.7);
-          font-weight: 500; }
+      .fade-screen .modal-list .modal-items .modal-details p {
+        color: rgba(51, 52, 65, 0.7);
+        font-weight: 500; }
     .fade-screen .modal-list.album-tracks .modal-details {
       width: 100%; }
 
@@ -2974,7 +2976,7 @@ a {
   to {
     opacity: 1; } }
 .banner-container {
-  background: #C8437A;
+  background: #c8437a;
   height: 100vh; }
   @media (min-width: 64em) {
     .banner-container {
@@ -3018,8 +3020,8 @@ a {
 
 .searcher-button {
   background-color: rgba(200, 67, 122, 0.7);
-  border-radius: 1rem;
   border: none;
+  border-radius: 1rem;
   color: white;
   cursor: pointer;
   font-size: 0.75rem;
@@ -3032,7 +3034,7 @@ a {
     .searcher-button {
       padding: .4rem; } }
   .searcher-button:active, .searcher-button:focus, .searcher-button:hover {
-    background-color: #C8437A;
+    background-color: #c8437a;
     outline: none; }
 
 .searcher-container {
@@ -3044,23 +3046,23 @@ a {
   margin-top: 1rem; }
   @media (min-width: 64em) {
     .searcher-container {
-      margin-top: 0;
-      height: 5rem; } }
+      height: 5rem;
+      margin-top: 0; } }
   .searcher-container .searcher-wrapper {
     border: none;
     padding: 0;
     position: relative;
     text-align: center; }
   .searcher-container .searcher-text {
-    border-radius: 1rem;
     border: .1rem solid transparent;
+    border-radius: 1rem;
     font-size: 0.75rem;
     font-weight: bold;
     padding: .7rem;
     transition: all 1s;
     padding: .7rem; }
     .searcher-container .searcher-text:active, .searcher-container .searcher-text:focus, .searcher-container .searcher-text:hover {
-      border: 0.1rem solid #C8437A;
+      border: 0.1rem solid #c8437a;
       outline: none; }
   .searcher-container .searcher-button {
     margin: 1rem auto; }
@@ -3081,79 +3083,6 @@ a {
     @media (min-width: 64em) {
       .actions .searcher-button {
         padding: .7rem; } }
-
-.result-container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #383A49;
-  min-height: 0; }
-  @media (min-width: 64em) {
-    .result-container {
-      min-height: 60vh; } }
-  .result-container#backgroundContainer {
-    display: none; }
-    @media (min-width: 64em) {
-      .result-container#backgroundContainer {
-        display: flex; } }
-  .result-container .message {
-    color: rgba(255, 255, 255, 0.1);
-    font-size: 1.25rem;
-    margin-top: 1rem; }
-  .result-container .artist .artist-icon {
-    background-image: url("/assets/images/artist-icon.png");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    bottom: .5rem;
-    height: 1rem;
-    left: .5rem;
-    width: 1rem; }
-    @media (min-width: 35.5em) {
-      .result-container .artist .artist-icon {
-        height: 1.5rem;
-        width: 1.5rem; } }
-    @media (min-width: 64em) {
-      .result-container .artist .artist-icon {
-        bottom: 1rem;
-        left: 1rem; } }
-  .result-container .album .artist-icon {
-    background-image: url("/assets/images/album-icon.png");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    bottom: .25rem;
-    height: 2rem;
-    left: .25rem;
-    width: 2rem; }
-    @media (min-width: 35.5em) {
-      .result-container .album .artist-icon {
-        height: 3rem;
-        width: 3rem; } }
-    @media (min-width: 64em) {
-      .result-container .album .artist-icon {
-        bottom: .25rem;
-        left: .25rem; } }
-
-.results {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem; }
-  @media (min-width: 64em) {
-    .results {
-      padding: 0 7.5%; } }
-  .results .headline {
-    border-top: 0.15rem solid rgba(51, 52, 65, 0.2);
-    height: 4rem; }
-    @media (min-width: 35.5em) {
-      .results .headline {
-        height: 7rem; } }
-    @media (min-width: 64em) {
-      .results .headline {
-        height: 4rem; } }
 
 .photo {
   border-radius: .25rem .25rem 0 0;
@@ -3193,6 +3122,78 @@ a {
         top: 70%; } }
   .photo .artist-icon {
     position: absolute; }
+
+.result-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #383a49;
+  min-height: 0; }
+  @media (min-width: 64em) {
+    .result-container {
+      min-height: 60vh; } }
+  .result-container#backgroundContainer {
+    display: none; }
+    @media (min-width: 64em) {
+      .result-container#backgroundContainer {
+        display: flex; } }
+  .result-container .message {
+    color: rgba(255, 255, 255, 0.1);
+    font-size: 1.25rem;
+    margin-top: 1rem; }
+  .result-container .artist .artist-icon,
+  .result-container .album .artist-icon {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; }
+  .result-container .artist .artist-icon {
+    background-image: url("/assets/images/artist-icon.png");
+    bottom: .5rem;
+    height: 1rem;
+    left: .5rem;
+    width: 1rem; }
+    @media (min-width: 35.5em) {
+      .result-container .artist .artist-icon {
+        height: 1.5rem;
+        width: 1.5rem; } }
+    @media (min-width: 64em) {
+      .result-container .artist .artist-icon {
+        bottom: 1rem;
+        left: 1rem; } }
+  .result-container .album .artist-icon {
+    background-image: url("/assets/images/album-icon.png");
+    bottom: .25rem;
+    height: 2rem;
+    left: .25rem;
+    width: 2rem; }
+    @media (min-width: 35.5em) {
+      .result-container .album .artist-icon {
+        height: 3rem;
+        width: 3rem; } }
+    @media (min-width: 64em) {
+      .result-container .album .artist-icon {
+        bottom: .25rem;
+        left: .25rem; } }
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem; }
+  @media (min-width: 64em) {
+    .results {
+      padding: 0 7.5%; } }
+  .results .headline {
+    border-top: 0.15rem solid rgba(51, 52, 65, 0.2);
+    height: 4rem; }
+    @media (min-width: 35.5em) {
+      .results .headline {
+        height: 7rem; } }
+    @media (min-width: 64em) {
+      .results .headline {
+        height: 4rem; } }
 
 .gal-item {
   display: flex;

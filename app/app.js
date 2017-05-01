@@ -7,7 +7,7 @@ angular
       }
     })
     //search partial
-    .directive('ngSearch', function(){
+    .directive('ngSearch', function(){ 
       return{
         templateUrl: './views/search/search.html'
       }

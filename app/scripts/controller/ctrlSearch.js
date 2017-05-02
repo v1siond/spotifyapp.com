@@ -1,7 +1,7 @@
 angular.module('spotify')
     .controller('ctrlSearch', function($scope, $http) {
       $scope.quantity = 1; //limit images and others array results
-      $scope.limitString = 55;
+      $scope.limitString = 55; //limit the name of tracks nor albums
       $scope.defaultImage = 'assets/images/deafult-image.jpg'; //default image
       $scope.artistImage = 'assets/images/artist-icon.png'; //artist icon
       var audioObject = null;
@@ -9,12 +9,15 @@ angular.module('spotify')
       //search function
       var generalSearch = function(target) {
         $('.results').hide();//hide previous searchs
+        // if next is clicked, then apply offset
         if (target.hasClass('next') && $scope.paginationNext == true) {
           offset = offset + 20;
         }else {
+          //the offset is lowered if prev is clicked
           if (target.hasClass('prev') && $scope.paginationPrev == true) {
             offset = offset - 20;
           }else {
+            //if search button is clicked, then offset is 0
             offset = 0;
           }
         }
@@ -44,7 +47,7 @@ angular.module('spotify')
                     }, 5000);
                 }
                 if (res.data.artists.next !== null || res.data.albums.next !== null) {
-                  $scope.paginationNext = true;
+                  $scope.paginationNext = true; //if the next value is not null, then we have more than 20 results
                 }
                 if (res.data.artists.previous !== null || res.data.albums.previous !== null) {
                   $scope.paginationPrev = true;
@@ -75,8 +78,9 @@ angular.module('spotify')
         if (target.hasClass('artist')) {
           //if artist, then looks for albums
           var artistId = $(e.currentTarget).attr("data-id");
-          
-          var getAlbumYear = function(id, index, array) {
+
+          //grabs an array of ialbum ids and looks for them, then asigns to an object array to show
+          var getAlbumYear = function(id, index, array) { 
             var urla = "https://api.spotify.com/v1/albums/" + id;
             $http.get(urla)
               .then(function(res) {
@@ -85,6 +89,7 @@ angular.module('spotify')
             });    
           }
 
+          //looks for albums from a given artist
           var getAlbum = function (artist) {
             var urlt = "https://api.spotify.com/v1/artists/" + artistId;
             var url = "https://api.spotify.com/v1/artists/" + artistId + "/albums";
@@ -94,16 +99,15 @@ angular.module('spotify')
             $scope.artistName = {};
             $scope.artistBackground = {};
             var c = 0;
-
             $http.get(url)
               .then(function(res) {
                 $scope.artistAlbums = res.data.items; //get album if found
-                angular.forEach($scope.artistAlbums, function(value, key) {
+                angular.forEach($scope.artistAlbums, function(value, key) { //asign ids to an array to look for album year
                   this.push(value.id);
                 }, albums);
                 angular.forEach(albums, function() {
                   albumId = albums[c];
-                  getAlbumYear(albumId, c, $scope.albumYear);
+                  getAlbumYear(albumId, c, $scope.albumYear); //executes the function and grabs all the album years
                   c++; 
                 });  
             }, function(error) {
@@ -117,7 +121,7 @@ angular.module('spotify')
             });
           }
           getAlbum(artistId);
-          $('.fade-albums').css('display', 'flex');
+          $('.fade-albums').css('display', 'flex'); //shows modal
         }
         if (target.hasClass('album')) {
           //if album, then look for tracks
@@ -143,8 +147,8 @@ angular.module('spotify')
         }
       }
       $scope.previewAudio = function(e) {
-        var target = $(e.currentTarget);
-        var playingCssClass = "playing";
+        var target = $(e.currentTarget); //get current target
+        var playingCssClass = "playing"; //define playing class
         var fetchTracks = function (albumId, callback) {
             $.ajax({
                 url: 'https://api.spotify.com/v1/albums/' + albumId,
@@ -155,25 +159,27 @@ angular.module('spotify')
         }
         if (target !== null) {
           if (target.hasClass(playingCssClass)) {
-            audioObject.pause();
+            audioObject.pause();  //apply pause if click while playing
           } else {
             if (audioObject) {
-              audioObject.pause();
+              audioObject.pause(); //pause tracks by default
             }
             if (target.hasClass('album-details')) {
+              // if the target has class album-detail then get album preview by data-id
               fetchTracks(target.attr("data-id"), function (data) {
-                audioObject = new Audio(data.tracks.items[0].preview_url);
-                audioObject.play();
-                target.addClass(playingCssClass);
+                audioObject = new Audio(data.tracks.items[0].preview_url); //create a new audio object with the preview url
+                audioObject.play(); //play on click
+                target.addClass(playingCssClass); //add class playing
                 audioObject.addEventListener('ended', function () {
-                    target.removeClass(playingCssClass);
+                    target.removeClass(playingCssClass); //if preview ended, remove playing class and pause
                 });
                 audioObject.addEventListener('pause', function () {
-                  target.removeClass(playingCssClass);
+                  target.removeClass(playingCssClass); //if clicked then pause
                 });
               });
             }
-            if (target.hasClass('track-details')) {              
+            //if target have track details, then get current clicked track from a given album by data-id
+            if (target.hasClass('track-details')) {          
               audioObject = new Audio(target.attr("data-id"));
               audioObject.play();
               target.addClass(playingCssClass);

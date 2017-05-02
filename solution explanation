@@ -1,0 +1,60 @@
+First, i apologize for not deliver this test on time, pasts weeks were hell in my country (Venezuela), the goverment took away the electricity and internet in various citys and it was really hard to work, actually A LOT of work that i have to do was acumulated and i just barely got in time after a various days working until midnight, at the same time i started doing the app. Of course, i know that this doesn't change anything, i didn't deliver the test on time and there's a huge chance i will not be considered as a candidate anymore but, i want to show you that, even when i'm aware of the situation, i'm a professional and i'll never gonna break a commitment nor a promise.
+
+That aside, here i describe the solution.
+
+It was a simple app with little services, actually the main goal was just to get and show artist/albums. So, even when make modules was a plus, i decide not to.  An app just to show artist and albums, was kinda boring, so i thought i have to add something extra, the design was great, and it have track list and album list, why not take advantage of that? with that thought, i added a feature to get preview from both, tracks and albums
+
+So, now the app was something like this
+
+General Search -> looks for artist nor albums with a given input
+Search Artist Album -> looks for albums from the clicked artist 
+Search Album Tracks -> Looks for tracks from the clicked album
+Preview -> reproduce the preview from the clicked album/song
+
+With that functions in mind i started to work. The approach was pretty simple, i defined a main module called spotify and a main controller caled ctrlSearch, there i added the services as $scope.functions instead of making call to them, all the functions of the app were basically search after all. If the app had 1 or 2 more features, without a doubt, a more structured way would be necessary, but it wasn't the case.
+
+After markup and define the directives as simple views i started styling.
+
+#Style
+
+The main preprocesor i normally use is sass (also like stylus a lot), and the style guide is ITCSS, with this approach in my i divide the stylesheets in
+
+tools -> mixins
+base -> basic global configurations
+helpers -> certain static class for certain moments
+variables -> all the static values i used
+Layouts -> for views
+components -> for normally fixed partials or partials that are called in a certain situation
+
+I use stylelint to lint and order my stylesheets so, i added to the project, i did the design as close as i could with some minor changes, for example in the list of tracks/albums, the font-color was white, but if an artist had an image with white background, it'll be dificult to see, i decided to add a little shadow box to prevent that, also i didn't know exactly how you wanted to show the results with show more and i don't like huge scrolling so i did a 20 show limit and worked with show more - prev results, in every search you come back to the top, scroll reduce is good for UX in this case.
+
+After finish the style, i started with the functions, there're 3 main functions and they works like this:
+
+#functions/services
+
+First we have the General Search
+
+$scope.startSearch = function Search(e) {    
+  var target = $(e.currentTarget); //grabs current target
+  generalSearch(target); //execute function
+}
+
+the target its important because i use it to control what element is making the call
+
+In this case if the element its the search button, it'll look for an artist nor album but if the element its the showmore or previews button, then it'll look for different results of the same search applying offsets as required.
+
+Secondly we have the ArtistAlbum function
+
+this is also controlled by target, if the target its an artist the functin looks for albums and if the target its an album, it'll look for tracks.
+
+The tricky part of this, was get the album years, the json structure is different from any call (album structure is different from tracks), actually it doesn't return the same data, so the solution i come with was to make an array of album ids and look for them automatically to display the years.
+
+Last, we have the previewAudio audio function, this basically grabs the data-id from a clicked track nor album, creates an audio object and reproduce it until the preview is finished or the user pause it.
+
+In the code you can see all the comments that explain exactly what the functions.
+
+#test
+
+I only did one major test, for the general search, but i let everything setup for more unit test and e2e test
+
+really hope you guys like it.
